@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 int sum(int a, int b) {
   return a+b;
 }
@@ -73,6 +73,7 @@ void main(void)
 
 
 // Arrays and strings
+/*
 int a[10];
 int count;
 for(count = 0; count < 10; count++)
@@ -84,7 +85,89 @@ printf("The first and second elements as pointers are %d and %d\n", *a, *(a+1));
 
 
 char myStr[10] = "thestring"; // Attention, on doit placer un 0 comme dernier char
+*/
 
+
+/*
+char str1[10] = "first";
+char str2[10] = "second";
+char str3[20];
+char *src, *dest; // Pointer source et destination
+
+src = str1;       // Comme une array, le nom d'une string est un pointer sur son premier elmt
+dest = str3;      // Dest pointe sur le premier elmt de la str3
+printf("src : %p\n", src);
+printf("dest : %p\n", dest);
+
+while (*src != 0) // Tant que la fin de la str n'est pas atteinte
+{
+  *dest = *src; // La valeur de dest est égale à la valeur de src
+  src++;        // Pointer incrémenté
+  dest++;
 }
 
+src = str2;
+while(*src != 0) {
+  *dest = *src;
+  src++;
+  dest++;
+}
+*dest = 0;   // On termine la string
+
+printf("%s + %s = %s\n", str1, str2, str3);
+*/
+
+/*
+int val = 12;
+char str[50];
+
+sprintf(str, "The value of val is %d\n", val); // Ajoute automatiquement un zéro
+printf("%s\n",str);
+*/
+
+
+/*
+// Utilisation de string.h
+char str1[10] = "first";
+char str2[10] = "second";
+char str3[20];
+
+strcpy(str3,str1);    // Copie
+strcat(str3, str2);   // Concat
+printf("%s + %s = %s\n", str1, str2, str3);
+
+char str4[10] = "first";
+char str5[10] = "fire";
+
+if(strcmp(str4, str5) == 0) // Pour comparer toute la str (strncmp() pour cmp un nb de char)
+{
+  printf("Strings are identical\n");
+} else {
+  printf("Strings are different\n");
+}
+// On peut ignorer la casse avec strcasecmp et strncasecmp
+*/
+
+// Lire la valeur d'une string
+/*
+int val;
+char string[10] = "250";
+sscanf(string, "%d", &val);
+printf("The value of the string is %d\n", val);
+*/
+
+int val;
+char result[10];
+char string[25] = "The first number is 1";
+if (sscanf (string, "The %s number is %d", result, &val) == 2)
+{
+printf ("String : %s Value : %d\n", result, val);
+}
+else
+{
+printf ("I couldn't find two values in that string.\n");
+}
+printf("The length of the str '%s' is %zu\n", string, strlen(string)); // %zu pour les long unsigned int
+
+}
 

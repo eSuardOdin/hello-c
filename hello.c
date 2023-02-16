@@ -10,7 +10,23 @@ int sumAndDiff (int a, int b, int *res) {
   *res = a - b;
   return sum;
 }
-void main(void)
+
+typedef enum {
+  false,
+  true
+} BOOLEAN;
+
+typedef struct 
+{
+  int inval1;
+  int inval2;
+  int outval;
+} MY_DATA;
+
+void addStruct(MY_DATA *d) {
+  d->outval = d->inval1 + d->inval2; 
+}
+int main(int argc, char *argv[])
 {
   /*
   //Print statement
@@ -71,7 +87,6 @@ void main(void)
   printf("The difference of %d and %d is %d\n", a, b, diff);
 */
 
-
 // Arrays and strings
 /*
 int a[10];
@@ -86,7 +101,6 @@ printf("The first and second elements as pointers are %d and %d\n", *a, *(a+1));
 
 char myStr[10] = "thestring"; // Attention, on doit placer un 0 comme dernier char
 */
-
 
 /*
 char str1[10] = "first";
@@ -125,7 +139,6 @@ sprintf(str, "The value of val is %d\n", val); // Ajoute automatiquement un zér
 printf("%s\n",str);
 */
 
-
 /*
 // Utilisation de string.h
 char str1[10] = "first";
@@ -156,6 +169,8 @@ sscanf(string, "%d", &val);
 printf("The value of the string is %d\n", val);
 */
 
+/*
+
 int val;
 char result[10];
 char string[25] = "The first number is 1";
@@ -168,6 +183,155 @@ else
 printf ("I couldn't find two values in that string.\n");
 }
 printf("The length of the str '%s' is %zu\n", string, strlen(string)); // %zu pour les long unsigned int
+*/
+
+// User input
+/*
+  // OK mais si l'user rentre 257 char on a de l'overflow
+  char input [256]
+  int age;
+
+  printf("What's your name ?\n");
+  printf("Name : ");
+  scanf("%s", input);
+
+  printf("Hello %s how old are you ?\n", input);
+  printf("Age : ");
+  scanf("%d", &age);
+
+  printf("You're %d years old\n", age);
+*/
+/*
+  char input[32], name[32];
+  int  age;
+  printf("What's your name ?\n");
+  fgets(input, 32, stdin); // fgets(buffer, limite d'octets, where to read)
+  sscanf(input, "%s", name);
+
+  printf("Hello %s. How old are you ?\n", name);
+  while (1) 
+  {
+    fgets(input, 32, stdin);
+    if(sscanf(input, "%d", &age)) break;
+    printf("Error in input type\n");
+  }
+
+  printf("You're %d years old\n", age);
+  */
+
+  /*
+ int param = 0;
+ while (param < argc)
+ {
+  printf("Parameter %d is %s\n", param, argv[param]);
+  param++;
+ }
+
+ int arg1, arg2;
+ if(argc == 4) // Si on a 3 arguments au programme (Deux opérandes et un opérateur)
+  {
+    // Les opérateurs
+    sscanf (argv[1], "%d", &arg1);
+    sscanf (argv[3], "%d", &arg2);
+    if (*argv[2] == '+') printf("%d\n", arg1 + arg2);
+    if (*argv[2] == '-') printf("%d\n", arg1 - arg2);
+    if (*argv[2] == 'x') printf("%d\n", arg1 * arg2);
+    if (*argv[2] == '/') printf("%d\n", arg1 / arg2);
+  }
+  */
+
+ // File input et output
+
+  // Read
+  /*
+  FILE *fp;  // Pointer sur le fichier
+  int value; // Va store le code ASCII du char
+
+  fp = fopen("./hello.txt", "rb"); // fopen(chemin, type de lecture) rb = read binary
+
+  if(fp) // Si le pointeur returned est !0 TOUJOURS VERIFIER
+  {
+  while (1)
+  {
+    value = fgetc(fp);         // Get un char et move au prochain, return EOF à la fin
+    if (value == EOF) break;
+    else printf ("%c", value); // Si on a un char on le print
+  }
+  fclose(fp); // On ferme le fichier (Libère le pointer)
+  } 
+
+  printf("\n");
+
+  */
+  //Write
+
+  
+  FILE *fp;
+  int value;
+  char *test[250];
+  /*
+  fp = fopen("./hello.txt", "wb"); // wb = write binary
+
+  if (fp)
+  {
+    
+    for (value = 48; value < 58; value++) // Va écrire 0123456789
+    {
+      fputc(value, fp);
+    }
+    
+    ;
+    fprintf (fp, "C'est du texte.");
+    // rb+        read existing file and overwrite it
+    // wb+        create new file and read what's written
+    // ab+        open a file, append et read
+    fclose(fp);
+  }
+
+
+  */
+
+
+ /*
+  fp = fopen("./hello.txt", "rb");  // Append binary : Si le fichier existe, on append à la suite, sinon on le créé et on le met début.
+
+  if (fp) {
+    fseek(fp, 5, SEEK_CUR); // Recherche 10 octets après la current location
+    while (1)
+    {
+      value = fgetc(fp);
+      if(value == EOF) break;
+      else printf("%c", value);
+    }
+    fclose(fp);
+  }
+  printf("\n");
+  */
+
+
+  BOOLEAN b_var;
+  b_var = 1;
+  if (b_var == true)
+  {
+  printf ("TRUE\n");
+  }
+  else
+  {
+  printf ("FALSE\n");
+  }
+
+  MY_DATA data;
+  data.inval1 = 2;
+  data.inval2 = 3;
+  addStruct(&data);
+  printf("data.outval = %d\n", data.outval);
+
+
+
+
+
+  // Chapter 12 Header Fils and preprocessor
+return 0;
 
 }
 
